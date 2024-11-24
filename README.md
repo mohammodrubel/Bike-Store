@@ -3,7 +3,7 @@
 # API Documentation
 
 ## Base URL
-
+https://bike-store-backend-lemon.vercel.app/
 
 
 ## Postman Documentation
