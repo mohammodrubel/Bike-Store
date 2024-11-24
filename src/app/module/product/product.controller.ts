@@ -8,7 +8,7 @@ const createProductController = async (req: Request, res: Response) => {
         const product = req.body
         const result = await ProductService.createProductService(product)
 
-        res.status(200).json({
+        res.status(201).json({
             status: true,
             message: 'Bike created successfully',
             data: result,
