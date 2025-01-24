@@ -4,18 +4,18 @@ import { productController } from "./product.controller";
 const router = express.Router();
 
 // POST method 
-router.post('/products', productController.createProductController);
+router.post('/', productController.createProductController);
 
 // GET method 
-router.get('/products', productController.getAllProductsController);
+router.get('/', productController.getAllProductsController);
 
 // GET method 
-router.get('/products/:id', productController.getSingleProductsController);
+router.get('/:id', productController.getSingleProductsController);
 
 // PUT method 
-router.put('/products/:id', productController.updateProductsController);
+router.put('/:id', productController.updateProductsController);
 
 // DELETE method 
-router.delete('/products/:id', productController.deleteProductController);
+router.delete('/:id', productController.deleteProductController);
 
 export  const productRouter = router;

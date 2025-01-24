@@ -1,7 +1,6 @@
 import express, { Application, NextFunction, Request, Response } from 'express'
 import cors from 'cors'
-import { productRouter } from './app/module/product/product.router'
-import { orderRouter } from './app/module/order/order.router'
+import router from './app/router/router'
 const app: Application = express()
 
 // parser
@@ -9,8 +8,7 @@ app.use(express.json())
 app.use(cors())
 
 // router
-app.use('/api', productRouter)
-app.use('/api', orderRouter)
+app.use('/api', router)
 
 app.get('/', (req: Request, res: Response) => {
   res.send('server is running ...!')
