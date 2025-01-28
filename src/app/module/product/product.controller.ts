@@ -20,14 +20,15 @@ const createProductController = CatchAsync(async (req: Request, res: Response) =
 })
 
 const getAllProductsController = async (req: Request, res: Response) => {
-    const searchTerm = req?.query?.searchTerm
-    const result = await ProductService.getAllProductService(searchTerm as string)
+    const result = await ProductService.getAllProductService(req.query)
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
         message: 'Bikes retrieved successfully',
-        data: result,
+        meta:result.meta,
+        data: result.data,
     })
+    // console.log(result)
 
 }
 

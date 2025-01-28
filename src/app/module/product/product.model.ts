@@ -1,10 +1,19 @@
 import { model, Schema } from "mongoose";
 import { Tproduct } from "./product.interface";
 
-  const productSchema = new Schema<Tproduct>({
+export  const productSchema = new Schema<Tproduct>({
     name:{
         type:String,
-        required:true
+        required:true,
+        unique:true
+    },
+    image:{
+        type:String,
+        required:true,
+    },
+    orderQuantity:{
+        type:Number,
+        default:0
     },
     brand:{
         type:String,
@@ -35,4 +44,4 @@ import { Tproduct } from "./product.interface";
   });
   
 
-export const Bike = model<Tproduct>('Bike', productSchema);
+export const Product = model<Tproduct>('product', productSchema);

@@ -1,0 +1,19 @@
+Backend Requirements:
+Database: MongoDB. Ensure schema includes:
+    Users (with roles: customer, admin)
+    Products (with details like name, brand, price, model, stock)
+    Orders (with user reference, product details, total price, status)
+Authentication:
+    Implement user registration, login, JWT token generation, and logout.
+    Secure password hashing and user session management.
+Product Management:
+    CRUD operations for products (create, read, update, delete).
+Order Management:
+    CRUD operations for orders (create, read, update, delete).
+    Ensure stock availability before placing orders.
+Payment Integration:
+    Integrate SurjoPay for payment processing.
+Error Handling:
+    Implement consistent and user-friendly error responses for invalid login attempts, out-of-stock products, etc.
+Performance Optimization:
+    Optimize API responses and ensure smooth operation for large data loads.

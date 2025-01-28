@@ -15,6 +15,7 @@ const productValidation = z.object({
     required_error: 'Price is required',
     invalid_type_error: 'Price must be a number',
   }),
+  image:z.string(),
   category: z.string({
     required_error: 'Category is required',
     invalid_type_error: 'Category must be a string',

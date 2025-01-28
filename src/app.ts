@@ -1,11 +1,14 @@
-import express, { Application, NextFunction, Request, Response } from 'express'
 import cors from 'cors'
+import express, { Application, Request, Response } from 'express'
+import globalErrorHandler from './app/Error/global__Error'
 import router from './app/router/router'
 const app: Application = express()
+import cookieParser from 'cookie-parser'
 
 // parser
 app.use(express.json())
 app.use(cors())
+app.use(cookieParser())
 
 // router
 app.use('/api', router)
@@ -14,14 +17,7 @@ app.get('/', (req: Request, res: Response) => {
   res.send('server is running ...!')
 })
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
-app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
-  res.status(500).json({
-    success: false,
-    message: err.message || 'Internal Server Error',
-    error: err,
-    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
-  })
-})
+
+app.use(globalErrorHandler)
 
 export default app

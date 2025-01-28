@@ -6,7 +6,10 @@
 // quantity (number): Quantity of the bike available.
 // inStock (boolean): Indicates if the bike is in stock.
 
+import { Types } from "mongoose"
+
 export type Tproduct = {
+    _id?:Types.ObjectId,
     name:string
     brand:string
     price:number
@@ -14,4 +17,6 @@ export type Tproduct = {
     quantity:number
     inStock:boolean
     description:string
+    orderQuantity?:string 
+    image:string
 }

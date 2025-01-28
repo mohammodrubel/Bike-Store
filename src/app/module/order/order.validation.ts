@@ -1,22 +1,23 @@
-import { z } from 'zod';
-
- const OrderSchemaValidateion = z.object({
-  email: z.string({
-    required_error: 'Email is required',
-    invalid_type_error: 'Email must be a string',
-  }),
-  product: z.string({
-    required_error: 'ProductId is required',
-    invalid_type_error: 'ProductId must be a needed',
-  }),
-  quantity: z.number({
-    required_error: 'quantity is required',
-    invalid_type_error: 'quantity must be a Number',
-  }),
-  totalPrice: z.number({
-    required_error: 'totalPrice is required',
-    invalid_type_error: 'totalPrice must be a Number',
+import { z } from "zod";
+import productValidation from "../product/product.validation";
+export const shippingAddressSchema = z.object({
+  fullName: z.string().nonempty("Full name is required"),
+  phone: z.string().nonempty("Phone number is required"),
+  address: z.string().nonempty("Address is required"),
+  address2: z.string().optional(),
+});
+export const orderSchemaValidation = z.object({
+  body: z.object({
+    customar: z.string(),  
+    products: z.array(
+      productValidation
+    ),
+    payment_method: z.enum(["CASH_ON_DELIVERY", "SSLCOMMERZ"]).default("CASH_ON_DELIVERY"),
+    transaction_id: z.string(),
+    shippingAddress: shippingAddressSchema,
+    total:z.number(),
+    grandTotal:z.number()
   }),
 });
 
-export default OrderSchemaValidateion
+

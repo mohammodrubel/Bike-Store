@@ -1,25 +1,56 @@
 import { model, Schema } from "mongoose";
-import { Torders } from "./order.interface";
+import { Torders, TshippingInfo } from "./order.interface";
+import { productSchema } from "../product/product.model";
+
+const shippingAddressSchema = new Schema<TshippingInfo>({
+    fullName: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    address2: {
+        type: String,  // Optional address line
+    }
+});
 
 const orderSchema = new Schema<Torders>({
-    email:{
-        type:String,
-        required:true
-    },  
-    product:{
-        type:Schema.Types.ObjectId,
-        ref:'Bike'
-    },  
-    quantity:{
+    customar: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'User',
+    },
+    products: {
+        type: [productSchema],
+        required: true,
+        ref: 'Bike',
+    },
+    payment_method: {
+        type: String,
+        enum: ["CASH_ON_DELIVERY", "SSLCOMMERZ"],
+        default: "CASH_ON_DELIVERY",
+    },
+    transaction_id: {
+        type: String,
+        required: true,
+    },
+    shippingAddress: shippingAddressSchema,
+    total:{
         type:Number,
-        required:true
-    },  
-    totalPrice:{
+        required:true 
+    },
+    grandTotal:{
         type:Number,
-        required:true
-    },  
-},{
-    timestamps:true
-})
+        required:true 
+    }
+}, {
+    timestamps: true,
+});
 
-export const Order = model<Torders>('order', orderSchema)
+export const Order = model<Torders>('order', orderSchema);
