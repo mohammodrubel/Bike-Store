@@ -33,8 +33,25 @@ const refreshTokenControler = CatchAsync(async(req,res)=>{
     })
 })
 
+const logoutController = CatchAsync(async (req, res) => {
+    // Clear the refresh token by setting the cookie with an empty value and immediate expiration
+    res.cookie("refreshToken", "", {
+        secure: config.node__env === 'production',
+        httpOnly: true,
+        expires: new Date(0), 
+    });
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Logout successfully',
+        data: [],
+    });
+});
+
 
 export const AuthController = {
     loginController,
-    refreshTokenControler
+    refreshTokenControler,
+    logoutController
 }
