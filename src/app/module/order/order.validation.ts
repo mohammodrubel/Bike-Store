@@ -13,7 +13,6 @@ export const orderSchemaValidation = z.object({
       productValidation
     ),
     payment_method: z.enum(["CASH_ON_DELIVERY", "SSLCOMMERZ"]).default("CASH_ON_DELIVERY"),
-    transaction_id: z.string(),
     shippingAddress: shippingAddressSchema,
     total:z.number(),
     grandTotal:z.number()

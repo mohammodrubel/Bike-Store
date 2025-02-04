@@ -16,5 +16,7 @@ export type Torders = {
     orderQuantity:number;
     total:number ;
     grandTotal:number; 
+    payment_status:'PENDING' | 'SUCCESS' | 'FAILED' | 'CANCELLED',
+    status: 'PENDING' | 'PROCESSING' | 'SHIPPED' | 'DELIVERED' | 'CANCELLED';
 }
 

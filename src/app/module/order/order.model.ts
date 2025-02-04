@@ -48,7 +48,17 @@ const orderSchema = new Schema<Torders>({
     grandTotal:{
         type:Number,
         required:true 
-    }
+    },
+    payment_status: {
+        type: String,
+        enum: ['PENDING', 'PAID', 'FAILED', 'CANCELLED'],
+        default: 'PENDING',
+      },
+      status: {
+        type: String,
+        enum: ['PENDING', 'PROCESSING', 'SHIPPED', 'DELIVERED', 'CANCELLED'],
+        default: 'PENDING',
+      },
 }, {
     timestamps: true,
 });

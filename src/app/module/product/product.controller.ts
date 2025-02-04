@@ -39,7 +39,7 @@ const getSingleProductsController = async (req: Request, res: Response) => {
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: 'Bikes retrieved successfully',
+        message: 'Bike Store single retrieved successfully',
         data: result,
     })
 

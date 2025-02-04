@@ -17,6 +17,18 @@ const createOrderController = CatchAsync(async (req: Request, res: Response) => 
     })
 }
 )
+
+const getAllOrderController = CatchAsync(async(req , res )=>{
+    const result = await OrderService.getAllOrderService()
+    sendResponse(res,{
+        statusCode:httpStatus.OK,
+        success:true ,
+        message:"all order ",
+        data:result
+    })
+})
+
+
 const getOrderRevenueController = CatchAsync(async (req: Request, res: Response) => {
     const result = await OrderService.getOrderRevenueService()
 
@@ -28,8 +40,20 @@ const getOrderRevenueController = CatchAsync(async (req: Request, res: Response)
     })
 })
 
+const getSingleOrderControler = CatchAsync(async(req , res )=>{
+    const id = req.params.id 
+    const result = await OrderService.singleOrderService(id)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'single order shwen successfully',
+        data: result,
+    })
+})
 
 export const OrderController = {
     createOrderController,
-    getOrderRevenueController
+    getOrderRevenueController,
+    getAllOrderController,
+    getSingleOrderControler
 }

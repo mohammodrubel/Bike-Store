@@ -9,6 +9,8 @@ const router = express.Router();
 
 // POST method 
 router.post('/',auth("admin","customer"),DataValidation(orderSchemaValidation),OrderController.createOrderController);
+router.get('/',OrderController.getAllOrderController);
+router.get('/:id',OrderController.getSingleOrderControler);
 
 // GET method 
 router.get('/revenue', OrderController.getOrderRevenueController);
