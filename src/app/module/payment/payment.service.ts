@@ -5,6 +5,7 @@ import App__error from "../../Error/App__Error";
 import { Order } from "../order/order.model";
 import { Payment } from "./paymentModel";
 import SSLCommerzPayment from 'sslcommerz-lts';
+import { updatePaymentAndOrderStatus } from "./payment.utils";
 const store_id = process.env.STORE_ID;
 const store_passwd = process.env.STORE_PASS;
 const is_live = false;

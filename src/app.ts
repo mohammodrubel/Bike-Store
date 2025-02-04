@@ -4,17 +4,26 @@ import globalErrorHandler from './app/Error/global__Error'
 import router from './app/router/router'
 const app: Application = express()
 import cookieParser from 'cookie-parser'
+import bodyParser from 'body-parser'
+import morgan from 'morgan';
 
 
 // parser
-app.use(express.json())
+app.use(morgan('dev'));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+app.use(cookieParser())
 app.use(
   cors({
-    origin: ['http://localhost:5173'], 
+    origin: ['http://localhost:5173'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders:
+      'Content-Type, Authorization, Origin, X-Requested-With, Accept', 
     credentials: true, 
   })
 );
-app.use(cookieParser())
+
 
 // router
 app.use('/api', router)

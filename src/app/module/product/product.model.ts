@@ -5,7 +5,6 @@ export  const productSchema = new Schema<Tproduct>({
     name:{
         type:String,
         required:true,
-        unique:true
     },
     image:{
         type:String,
