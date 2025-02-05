@@ -1,5 +1,6 @@
 import express from "express";
 import { productController } from "./product.controller";
+import auth from "../../../middleware/auth";
 
 const router = express.Router();
 
@@ -7,7 +8,7 @@ const router = express.Router();
 router.post('/', productController.createProductController);
 
 // GET method 
-router.get('/', productController.getAllProductsController);
+router.get('/',productController.getAllProductsController);
 
 // GET method 
 router.get('/:id', productController.getSingleProductsController);

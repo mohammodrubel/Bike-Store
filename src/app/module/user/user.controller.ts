@@ -1,20 +1,43 @@
 import { Request, Response } from "express"
-import CatchAsync from "../../utils/CatchAsync"
-import { Userservice } from "./user.service"
-import sendResponse from "../../utils/sendResponse"
 import httpStatus from "http-status"
+import CatchAsync from "../../utils/CatchAsync"
+import sendResponse from "../../utils/sendResponse"
+import { Userservice } from "./user.service"
+import { JwtPayload } from "jsonwebtoken"
 
-const createUserController = CatchAsync(async (req:Request,res:Response)=>{
+const createUserController = CatchAsync(async (req: Request, res: Response) => {
     const result = await Userservice.createUserService(req.body)
-    
+
     sendResponse(res, {
         statusCode: httpStatus.CREATED,
         success: true,
-        message:'new user created successfully',
+        message: 'new user created successfully',
+        data: result,
+    })
+})
+
+const changePasswordController = CatchAsync(async (req: Request, res: Response) => {
+    const result = await Userservice.changePasswordService(req?.body, req?.user as JwtPayload)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'password Change successfully done',
+        data: result,
+    })
+})
+
+const myOrderController = CatchAsync(async (req , res)=>{
+    const result = await Userservice.getMyOrderService(req?.user as JwtPayload)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'successfully get my all order',
         data: result,
     })
 })
 
 export const userController = {
-    createUserController
+    createUserController,
+    changePasswordController,
+    myOrderController
 }

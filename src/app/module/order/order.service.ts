@@ -117,18 +117,15 @@ const createOrderService = async (payload: Torders) => {
     }
 };
 
-const getAllOrderService = async()=>{
+const getAllOrderService = async () => {
     const reuslt = await Order.find({}).populate('customar')
     return reuslt
 }
 
-
-const singleOrderService = async(id:string)=>{
+const singleOrderService = async (id: string) => {
     const result = await Order.findById(id)
     return result
 }
-
-
 
 const getOrderRevenueService = async () => {
     const revenue = await Order.aggregate([
@@ -144,11 +141,12 @@ const getOrderRevenueService = async () => {
 };
 
 
+
 export const OrderService = {
     createOrderService,
     getOrderRevenueService,
     getAllOrderService,
-    singleOrderService
+    singleOrderService,
 }
 
 
