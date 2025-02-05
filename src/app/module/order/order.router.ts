@@ -11,6 +11,7 @@ const router = express.Router();
 router.post('/', auth("admin", "customer"), DataValidation(orderSchemaValidation), OrderController.createOrderController);
 router.get('/', OrderController.getAllOrderController);
 router.get('/:id', OrderController.getSingleOrderControler);
+router.patch('/:id',OrderController.orderUpdateController)
 // GET method 
 router.get('/revenue', OrderController.getOrderRevenueController);
 

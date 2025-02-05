@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import httpStatus from "http-status";
 import { v4 as uuidv4 } from 'uuid';
 import App__error from "../../Error/App__Error";
@@ -141,8 +142,28 @@ const getOrderRevenueService = async () => {
 };
 
 
+const orderUpdateService = async (data: {status:string}, id: string) => {
+    try {
+        const result = await Order.findByIdAndUpdate(
+            id, 
+            { $set: data }, 
+            { new: true } 
+        );
+
+        if (!result) {
+            throw new Error("Order not found");
+        }
+
+        return result;
+    } catch (error) {
+        throw new Error("Failed to update order");
+    }
+};
+
+
 
 export const OrderService = {
+    orderUpdateService,
     createOrderService,
     getOrderRevenueService,
     getAllOrderService,

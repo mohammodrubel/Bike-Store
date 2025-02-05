@@ -51,9 +51,22 @@ const getSingleOrderControler = CatchAsync(async (req, res) => {
     })
 })
 
+const orderUpdateController = CatchAsync(async (req, res) => {
+    const id = req.params.id
+    const data = req.body
+    const result = await OrderService.orderUpdateService(data,id)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'update successfully successfully',
+        data: result,
+    })
+})
+
 
 
 export const OrderController = {
+    orderUpdateController,
     createOrderController,
     getOrderRevenueController,
     getAllOrderController,
