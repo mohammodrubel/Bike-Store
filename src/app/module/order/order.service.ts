@@ -161,6 +161,11 @@ const orderUpdateService = async (data: {status:string}, id: string) => {
 };
 
 
+const orderDeleteService = async(id:string)=>{
+    const result = await Order.findByIdAndDelete(id)
+    return result 
+}
+
 
 export const OrderService = {
     orderUpdateService,
@@ -168,6 +173,7 @@ export const OrderService = {
     getOrderRevenueService,
     getAllOrderService,
     singleOrderService,
+    orderDeleteService
 }
 
 

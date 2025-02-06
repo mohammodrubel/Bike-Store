@@ -12,6 +12,7 @@ router.post('/', auth("admin", "customer"), DataValidation(orderSchemaValidation
 router.get('/', OrderController.getAllOrderController);
 router.get('/:id', OrderController.getSingleOrderControler);
 router.patch('/:id',OrderController.orderUpdateController)
+router.delete('/:id',OrderController.orderDeleteController)
 // GET method 
 router.get('/revenue', OrderController.getOrderRevenueController);
 

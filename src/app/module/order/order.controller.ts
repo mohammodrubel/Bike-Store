@@ -62,6 +62,15 @@ const orderUpdateController = CatchAsync(async (req, res) => {
         data: result,
     })
 })
+const orderDeleteController = CatchAsync(async(req,res)=>{
+    const result = await OrderService.orderDeleteService(req?.params.id)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'delete product successfully',
+        data: result,
+    })
+})
 
 
 
@@ -71,4 +80,5 @@ export const OrderController = {
     getOrderRevenueController,
     getAllOrderController,
     getSingleOrderControler,
+    orderDeleteController
 }
