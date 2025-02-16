@@ -2,7 +2,6 @@ import bcrypt from 'bcrypt'
 import httpStatus from "http-status"
 import { JwtPayload } from "jsonwebtoken"
 import App__error from "../../Error/App__Error"
-import { Order } from "../order/order.model"
 import { TUser } from "./user.interface"
 import { User } from "./user.model"
 
@@ -45,16 +44,8 @@ const changePasswordService = async (payload: { oldPassword: string, newPassword
   await isValidUser.save();
 }
 
-const getMyOrderService = async (payload: JwtPayload) => {
-  if (!payload?.id) {
-    throw new Error("Invalid request");
-  }
-  const orders = await Order.find({ customar: payload.id });
-  return orders; 
-};
 
 export const Userservice = {
   createUserService,
   changePasswordService,
-  getMyOrderService
 }

@@ -26,18 +26,9 @@ const changePasswordController = CatchAsync(async (req: Request, res: Response) 
     })
 })
 
-const myOrderController = CatchAsync(async (req , res)=>{
-    const result = await Userservice.getMyOrderService(req?.user as JwtPayload)
-    sendResponse(res, {
-        statusCode: httpStatus.OK,
-        success: true,
-        message: 'successfully get my all order',
-        data: result,
-    })
-})
+
 
 export const userController = {
     createUserController,
     changePasswordController,
-    myOrderController
 }
