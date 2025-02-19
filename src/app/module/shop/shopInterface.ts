@@ -9,7 +9,7 @@ export type TShop = {
     socialMedia:string ;
     logo:string ;
     user:Types.ObjectId;
-    serviceOffer:[string]
+    // serviceOffer:[string]
     isActive:boolean;
     contactNumber:string;
     buisnessLicenseNumber:string
