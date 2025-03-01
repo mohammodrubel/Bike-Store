@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { LandRouter } from '../module/landlords/land.router'
+import { LandRouter } from '../module/tenants/tenants.router'
 import { LandLordsListing } from '../module/landlordsListing/landlords.Listing.router'
 import { userRouter } from '../module/user/user.router'
 

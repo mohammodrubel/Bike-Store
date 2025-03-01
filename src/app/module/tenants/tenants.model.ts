@@ -1,6 +1,6 @@
 
 import { model, Schema } from "mongoose";
-import { TLandlords } from "./land.interface";
+import { TLandlords } from "./tenants.interface";
 
 const LandlordsSchema = new Schema<TLandlords>({
     details_description: {
@@ -18,11 +18,11 @@ const LandlordsSchema = new Schema<TLandlords>({
         type: Number,
         required: true
     },
-    landlord:{
+    landlord: {
         type: Schema.Types.ObjectId,
-        ref: "User", 
+        ref: "User",
         required: true,
-    }    
+    }
 }, {
     timestamps: true
 })

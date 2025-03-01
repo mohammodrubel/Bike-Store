@@ -1,25 +1,25 @@
 import { NextFunction, Request, Response, Router } from "express";
-import { LandController } from "./land.controller";
-import { rentalZodHouseSchema } from "./land.zodValidation";
+import { LandController } from "./tenants.controller";
+import { rentalZodHouseSchema } from "./tenants.zodValidation";
 import DataValidation from "../../../middleware/dataValidation";
 import { upload } from "../../../middleware/SendToCloudinary";
 
 const router = Router()
 
 
-router.post('/create-land',
+router.post('/requests',
     upload.array('file',3),
     (req:Request,res:Response,next:NextFunction)=>{
     req.body = JSON.parse(req.body.data)
     next()
 },
 DataValidation(rentalZodHouseSchema),
-LandController.createLandController)
+LandController.createTenantsController)
 
 
-router.get('/',LandController.getAllLandController)
-// router.get('/:id',LandController.getSingleLandController)
-// router.delete('/',LandController.deleteLandController)
+router.get('/requests',LandController.getAllTenantsController)
+router.put('/profile',LandController.updateSingleTenantsController)
+
 
 
 export const LandRouter = router 
