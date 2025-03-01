@@ -21,7 +21,7 @@ const userSchema = new Schema<TUser>({
     role:{
         type:String,
         required:true ,
-        default:'user'
+        default:'Tenant'
     },
     isBlocked:{
         type:Boolean,

@@ -3,7 +3,7 @@ export type TUser = {
     name:string;
     email:string;
     password:string;
-    role:"customer" | "admin" | "user";
+    role:"Landlord" | "Admin" | "Tenant";
     isBlocked:boolean
 }
 
