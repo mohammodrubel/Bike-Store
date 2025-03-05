@@ -8,7 +8,7 @@ const router = Router()
 
 const myRouter = [
     { path: '/user', route: userRouter },
-    { path: '/land', route: LandRouter },
+    { path: '/landlords', route: LandRouter },
     { path: '/landlords', route: LandLordsListing },
 ]
 

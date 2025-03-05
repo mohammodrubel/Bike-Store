@@ -6,6 +6,7 @@ import { TLandlords } from "./tenants.interface";
 import { Landlords } from "./tenants.model";
 
 const createTenantsService = async (file: any, data: Partial<TLandlords>) => {
+    console.log(file)
     if (!file || file.length === 0) {
         throw new App__error(httpStatus.BAD_REQUEST, 'At least one image is required');
     }

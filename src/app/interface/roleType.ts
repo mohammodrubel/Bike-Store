@@ -1,8 +1,9 @@
 import { Types } from "mongoose";
 
 export const USER__ROLE = {
-    customer:'customer',
-    admin:'admin'
+    Landlord:"Landlord" ,
+    Admin:"Admin" ,
+    Tenant:"Tenant"
 } as const
 
 export type ROLE__TYPE = keyof typeof USER__ROLE 
@@ -13,7 +14,7 @@ export type reqUserType = {
     name: string;
     email: string;
     password: string;
-    role: "admin" | "user"; // Adjust roles as needed
+    role: "Landlord" | "Admin" | "Tenant"; 
     isBlocked: boolean;
     createdAt: Date;
     updatedAt: Date;

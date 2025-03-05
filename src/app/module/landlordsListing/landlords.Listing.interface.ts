@@ -6,5 +6,4 @@ export type TLandlordsRequest = {
     landlord_phone_number:string, 
     payment_status:'PENDING'| 'PAID'| 'FAILED'| 'CANCELLED',
     tenant_message:string,
-
 }

@@ -26,9 +26,20 @@ const changePasswordController = CatchAsync(async (req: Request, res: Response) 
     })
 })
 
+const getAllUserController = CatchAsync(async(req:Request,res:Response)=>{
+    const result =await Userservice.getAllUserService()
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'show all users',
+        data: result,
+    })
+})
+
 
 
 export const userController = {
     createUserController,
     changePasswordController,
+    getAllUserController
 }

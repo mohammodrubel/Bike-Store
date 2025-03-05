@@ -8,5 +8,6 @@ export type TLandlords = {
     rent_amount:number,
     number_of_bedrooms:number,
     multiple_images:[string],
-    landlord:Types.ObjectId
+    landlord:Types.ObjectId,
+    amenities:string
 }

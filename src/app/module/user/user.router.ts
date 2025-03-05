@@ -8,7 +8,8 @@ const router = Router()
     router.post('/create-user',userController.createUserController)
     router.post('/login',AuthController.loginController)
     router.post('/refresh-token',AuthController.refreshTokenControler)
-    router.post('/change-password',auth("admin","customer"),userController.changePasswordController)
+    router.post('/change-password',auth("Landlord" , "Admin" , "Tenant"),userController.changePasswordController)
     router.post('/logout',AuthController.logoutController)
+    router.get('/',userController.getAllUserController)
 
 export const userRouter = router 

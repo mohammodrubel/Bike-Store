@@ -9,10 +9,8 @@ const loginController = CatchAsync(async (req, res) => {
 
     const { accessToken, refreshToken } = result
     res.cookie("refreshToken", refreshToken, {
-        secure: config.node__env === 'production',
-        httpOnly: true,
-
-    })
+        maxAge: 7 * 24 * 60 * 60 * 1000, 
+    });
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,

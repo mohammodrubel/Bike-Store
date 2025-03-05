@@ -44,8 +44,14 @@ const changePasswordService = async (payload: { oldPassword: string, newPassword
   await isValidUser.save();
 }
 
+const getAllUserService = async ()=>{
+  const reuslt = await User.find()
+  return reuslt
+}
+
 
 export const Userservice = {
   createUserService,
   changePasswordService,
+  getAllUserService
 }

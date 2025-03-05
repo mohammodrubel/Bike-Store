@@ -22,6 +22,14 @@ const LandlordsSchema = new Schema<TLandlords>({
         type: Schema.Types.ObjectId,
         ref: "User",
         required: true,
+    },
+    rental_house_location:{
+        type: String,
+        required: true
+    },
+    amenities:{
+        type: String,
+        required: true
     }
 }, {
     timestamps: true
