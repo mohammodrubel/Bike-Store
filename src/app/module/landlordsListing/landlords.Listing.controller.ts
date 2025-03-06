@@ -1,66 +1,45 @@
-import { Request, Response } from "express";
-import CatchAsync from "../../utils/CatchAsync";
-import { LandLoardsService } from "./landlords.Listing.service";
-import sendResponse from "../../utils/sendResponse";
-import httpStatus from "http-status";
 
 
+import { Request, Response } from "express"
+import httpStatus from "http-status"
+import CatchAsync from "../../utils/CatchAsync"
+import sendResponse from "../../utils/sendResponse"
+import { landlordsListingService } from "./landlords.Listing.service"
 
-const createLandloardsListing = CatchAsync(async (req: Request, res: Response) => {
-    const result = await LandLoardsService.createLandloardsListingService(req.body);
-    sendResponse(res, {
-        statusCode: httpStatus.CREATED,
-        success: true,
-        message: "Landlord request created successfully.",
-        data: result,
-    });
-});
 
-const getAllLandloardssListing = CatchAsync(async (req: Request, res: Response) => {
-    const result = await LandLoardsService.getAllLandloardsListingService();
+const createlandlordsListingController = CatchAsync(async (req: Request, res: Response) => {
+    const file = req.files
+    const data = req.body
+    const result = landlordsListingService.createlandLordsService(file, data)
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "All landlord requests retrieved successfully.",
-        data: result,
-    });
-});
-
-const getSingleLandloardsListing = CatchAsync(async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const result = await LandLoardsService.getSingleLandloardsListingService(id);
+        message: 'create new Land successfully',
+        data: await result,
+    })
+})
+const getAlllandlordsListingController = CatchAsync(async (req: Request, res: Response) => {
+    const result = landlordsListingService.getAlllandLordsService()
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: `Landlord request with ID ${id} retrieved successfully.`,
-        data: result,
-    });
-});
+        message: 'get All Land ',
+        data: await result,
+    })
+})
 
-const updateLandloardsListing = CatchAsync(async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const result = await LandLoardsService.updateLandloardsListingService(id, req.body);
+const updateSinglelandlordsListingController = CatchAsync(async (req: Request, res: Response) => {
+    const result = landlordsListingService.updateTenantsService(req?.params?.id, req.body)
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: `Landlord request with ID ${id} updated successfully.`,
+        message: 'get Single Land',
         data: result,
-    });
-});
-
-const deleteLandloardsListing = CatchAsync(async (req: Request, res: Response) => {
-    const { id } = req.params;
-    await LandLoardsService.deleteLandloardsListingService(id);
-    sendResponse(res, {
-        statusCode: httpStatus.OK,
-        success: true,
-        message: `Landlord request with ID ${id} deleted successfully.`,
-        data: null,
-    });
-});
+    })
+})
 
 const getAllLandloardsRequest = CatchAsync(async (req: Request, res: Response) => {
-    await LandLoardsService.getAllLandloardsRequestService();
+    await landlordsListingService.getAllLandloardsRequestService();
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
@@ -71,7 +50,7 @@ const getAllLandloardsRequest = CatchAsync(async (req: Request, res: Response) =
 
 const updateLandloardsRequestService = CatchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
-    await LandLoardsService.updateLandloardsRequestService(id,req?.body);
+    await landlordsListingService.updateLandloardsRequestService(id);
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
@@ -81,13 +60,15 @@ const updateLandloardsRequestService = CatchAsync(async (req: Request, res: Resp
 });
 
 
-export const LandLoardsListingController = {
-    createLandloardsListing,
-    getAllLandloardssListing,
-    getSingleLandloardsListing,
-    updateLandloardsListing,
-    deleteLandloardsListing,
-    getAllLandloardsRequest,
-    updateLandloardsRequestService
+
+
+
+
+export const landlordsListingController = {
+    createlandlordsListingController,
+    getAlllandlordsListingController,
+    updateSinglelandlordsListingController,
+    updateLandloardsRequestService,
+    getAllLandloardsRequest
 }
 

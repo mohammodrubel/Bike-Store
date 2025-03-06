@@ -1,17 +1,25 @@
-import { Router } from "express";
-import { LandLoardsListingController } from "./landlords.Listing.controller";
+import { NextFunction, Request, Response, Router } from "express";
+import DataValidation from "../../../middleware/dataValidation";
+import { upload } from "../../../middleware/SendToCloudinary";
+import { rentalZodHouseSchema } from "./landlords.Listing.validation";
+import { landlordsListingController } from "./landlords.Listing.controller";
 
-const router = Router();
+const router = Router()
 
-// Rental Listings
-router.post('/listings', LandLoardsListingController.createLandloardsListing); 
-router.get('/listings', LandLoardsListingController.getAllLandloardssListing); 
-router.put('/listings/:id', LandLoardsListingController.getSingleLandloardsListing); 
-router.delete('/listings/:id', LandLoardsListingController.deleteLandloardsListing); 
 
-// Rental Requests
-router.get('/requests', LandLoardsListingController.getAllLandloardsRequest); 
-router.put('/requests/:id', LandLoardsListingController.updateLandloardsRequestService); 
+router.post('/listings',
+    upload.array('file', 3),
+    (req: Request, res: Response, next: NextFunction) => {
+        req.body = JSON.parse(req.body.data)
+        next()
+    },
+    DataValidation(rentalZodHouseSchema),
+    landlordsListingController.createlandlordsListingController)
 
-export const LandLordsListing = router;
 
+router.get('/listings', landlordsListingController.getAlllandlordsListingController)
+router.put('/listings', landlordsListingController.updateSinglelandlordsListingController)
+
+
+
+export const landlordsListingRouter = router 

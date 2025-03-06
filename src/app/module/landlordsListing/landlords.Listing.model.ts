@@ -1,32 +1,34 @@
-import { model, Schema } from "mongoose";
-import { TLandlordsRequest } from "./landlords.Listing.interface";
 
-const landloardsRequestSchema = new Schema<TLandlordsRequest>({
-    landlord_phone_number: {
+
+import { model, Schema } from "mongoose";
+import { TLandlords } from "./landlords.Listing.interface";
+
+const LandlordsSchema = new Schema<TLandlords>({
+    details_description: {
         type: String,
         required: true
     },
-    payment_status: {
-        type: String,
-        enum: ['PENDING', 'PAID', 'FAILED', 'CANCELLED'],
-        default: 'PENDING'
+    multiple_images: {
+        type: [String],
     },
-    rental_house_listing_ID: {
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'Landlord'
+    rent_amount: {
+        type: Number,
+        required: true
     },
-    tenant_ID: {
+    number_of_bedrooms: {
+        type: Number,
+        required: true
+    },
+    landlord: {
         type: Schema.Types.ObjectId,
         ref: "User",
         required: true,
     },
-    status: {
-        enum: ["pending", "approved", "rejected"],
-        default: 'pending',
+    rental_house_location:{
+        type: String,
         required: true
     },
-    tenant_message: {
+    amenities:{
         type: String,
         required: true
     }
@@ -34,4 +36,5 @@ const landloardsRequestSchema = new Schema<TLandlordsRequest>({
     timestamps: true
 })
 
-export const landloardsRequest = model<TLandlordsRequest>('landloardsRequest', landloardsRequestSchema)
+
+export const Listing = model<TLandlords>('Listing', LandlordsSchema) 

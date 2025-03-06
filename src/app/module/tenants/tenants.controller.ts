@@ -1,50 +1,72 @@
-import { Request, Response } from "express"
-import httpStatus from "http-status"
-import CatchAsync from "../../utils/CatchAsync"
-import sendResponse from "../../utils/sendResponse"
-import { LandService } from "./tenants.service"
+import { Request, Response } from "express";
+import httpStatus from "http-status";
+import CatchAsync from "../../utils/CatchAsync";
+import sendResponse from "../../utils/sendResponse";
+import { TenantsService } from "./tenants.service";
+
+
+
 
 const createTenantsController = CatchAsync(async (req: Request, res: Response) => {
-    const file = req.files 
-    const data = req.body 
-    const result = LandService.createTenantsService(file,data)
+    const result = await TenantsService.createTenantsService(req.body);
     sendResponse(res, {
-        statusCode: httpStatus.OK,
+        statusCode: httpStatus.CREATED,
         success: true,
-        message: 'create new Land successfully',
-        data:await result,
-    })
-})
-const getAllTenantsController = CatchAsync(async (req: Request, res: Response) => {
-    const result = LandService.getAllTenantsService()
-    sendResponse(res, {
-        statusCode: httpStatus.OK,
-        success: true,
-        message: 'get All Land ',
-        data:await result,
-    })
-})
-
-const updateSingleTenantsController = CatchAsync(async (req: Request, res: Response) => {
-    const result = LandService.updateTenantsService(req?.params?.id,req.body)
-    sendResponse(res, {
-        statusCode: httpStatus.OK,
-        success: true,
-        message: 'get Single Land',
+        message: "Landlord request created successfully.",
         data: result,
-    })
-})
+    });
+});
+
+const getAllTenantsController = CatchAsync(async (req: Request, res: Response) => {
+    const result = await TenantsService.getAllTenantsService();
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "All landlord requests retrieved successfully.",
+        data: result,
+    });
+});
+
+const getSingleTenantsController = CatchAsync(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await TenantsService.getSingleTenantsService(id);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: `Landlord request with ID ${id} retrieved successfully.`,
+        data: result,
+    });
+});
+
+const updateTenantsController = CatchAsync(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await TenantsService.updateTenantsService(id, req.body);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: `Landlord request with ID ${id} updated successfully.`,
+        data: result,
+    });
+});
+
+const deleteTenantsController = CatchAsync(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    await TenantsService.deleteTenantsService(id);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: `Landlord request with ID ${id} deleted successfully.`,
+        data: null,
+    });
+});
 
 
 
 
-
-
-
-
-export const LandController = {
-   createTenantsController,
-   getAllTenantsController,
-   updateSingleTenantsController
+export const TenantsController = {
+    createTenantsController,
+    getAllTenantsController,
+    getSingleTenantsController,
+    updateTenantsController,
+    deleteTenantsController
 }
-
