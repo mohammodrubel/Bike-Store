@@ -16,7 +16,7 @@ router.post('/listings',
     DataValidation(rentalZodHouseSchema),
     landlordsListingController.createlandlordsListingController)
 
-
+router.get(`/listings/:id`,landlordsListingController.getSinglelandlordsListingController)
 router.get('/listings', landlordsListingController.getAlllandlordsListingController)
 router.put('/listings', landlordsListingController.updateSinglelandlordsListingController)
 

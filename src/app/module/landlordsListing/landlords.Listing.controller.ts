@@ -27,6 +27,15 @@ const getAlllandlordsListingController = CatchAsync(async (req: Request, res: Re
         data: await result,
     })
 })
+const getSinglelandlordsListingController = CatchAsync(async (req: Request, res: Response) => {
+    const result = landlordsListingService.getSingleLandLordsService(req?.params?.id)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'get single Land ',
+        data: await result,
+    })
+})
 
 const updateSinglelandlordsListingController = CatchAsync(async (req: Request, res: Response) => {
     const result = landlordsListingService.updateTenantsService(req?.params?.id, req.body)
@@ -67,6 +76,7 @@ const updateLandloardsRequestService = CatchAsync(async (req: Request, res: Resp
 export const landlordsListingController = {
     createlandlordsListingController,
     getAlllandlordsListingController,
+    getSinglelandlordsListingController,
     updateSinglelandlordsListingController,
     updateLandloardsRequestService,
     getAllLandloardsRequest

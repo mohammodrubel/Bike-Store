@@ -113,7 +113,10 @@ const getAlllandLordsService = async (query: Record<string, unknown>) => {
   return { meta: meta, data: fieldQuery };
 };
 
-
+const getSingleLandLordsService = async (id:string)=>{
+  const response = await Listing.findById(id)
+  return response
+}
 
 const updateTenantsService = async () => {
 
@@ -129,6 +132,7 @@ const updateLandloardsRequestService = async () => {
 export const landlordsListingService = {
   createlandLordsService,
   getAlllandLordsService,
+  getSingleLandLordsService,
   updateTenantsService,
   getAllLandloardsRequestService,
   updateLandloardsRequestService
