@@ -114,7 +114,7 @@ const getAlllandLordsService = async (query: Record<string, unknown>) => {
 };
 
 const getSingleLandLordsService = async (id:string)=>{
-  const response = await Listing.findById(id)
+  const response = await Listing.findById(id).populate('landlord')
   return response
 }
 
