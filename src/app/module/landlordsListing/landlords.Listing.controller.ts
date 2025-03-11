@@ -19,7 +19,7 @@ const createlandlordsListingController = CatchAsync(async (req: Request, res: Re
     })
 })
 const getAlllandlordsListingController = CatchAsync(async (req: Request, res: Response) => {
-    const result = landlordsListingService.getAlllandLordsService()
+    const result = landlordsListingService.getAlllandLordsService(req?.query)
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
