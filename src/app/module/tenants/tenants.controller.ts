@@ -27,6 +27,16 @@ const getAllTenantsController = CatchAsync(async (req: Request, res: Response) =
     });
 });
 
+const getMyController = CatchAsync(async(req:Request,res:Response)=>{
+     const result = await TenantsService.getMySingleService(req?.user)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "get my all request.",
+        data: result,
+    });
+})
+
 const getSingleTenantsController = CatchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
     const result = await TenantsService.getSingleTenantsService(id);
@@ -68,5 +78,6 @@ export const TenantsController = {
     getAllTenantsController,
     getSingleTenantsController,
     updateTenantsController,
-    deleteTenantsController
+    deleteTenantsController,
+    getMyController
 }

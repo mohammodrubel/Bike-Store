@@ -30,7 +30,7 @@ const auth = (...requiredRoles: ROLE__TYPE[]) => {
             throw new App__error(httpStatus.UNAUTHORIZED, "Invalid token signature.");
         }
 
-      
+      console.log(decoded)
         // Extract role and id from decoded token
         const { role, id } = decoded;
 

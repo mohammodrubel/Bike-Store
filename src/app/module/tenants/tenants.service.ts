@@ -24,10 +24,12 @@ const createTenantsService = async (data: TLandlordsRequest) => {
     }
 };
 
-export default createTenantsService;
-
 const getAllTenantsService = async () => {
 
+}
+
+const getMySingleService = async (data) => {
+    console.log(data)
 }
 
 const getSingleTenantsService = async (id: string) => {
@@ -48,5 +50,6 @@ export const TenantsService = {
     getAllTenantsService,
     getSingleTenantsService,
     updateTenantsService,
-    deleteTenantsService
+    deleteTenantsService,
+    getMySingleService
 }
